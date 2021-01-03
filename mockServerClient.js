@@ -28,7 +28,7 @@ var mockServerClient;
             return (typeof require !== 'undefined') && require('browser-or-node').isNode;
         };
 
-        var makeRequest = (runningInNode() ? require('./sendRequest').sendRequest(tls, caCertPemFilePath) : function (host, port, path, jsonBody) {
+        var makeRequest = (runningInNode() ? require('./sendRequest').sendRequest(tls, caCertPemFilePath, contextPath) : function (host, port, path, jsonBody) {
             var body = (typeof jsonBody === "string" ? jsonBody : JSON.stringify(jsonBody || ""));
             var url = (tls ? 'https' : 'http') + '://' + host + ':' + port + path;
 

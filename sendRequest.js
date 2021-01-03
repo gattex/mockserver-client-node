@@ -63,7 +63,7 @@
             }
         };
 
-        var sendRequest = function (tls, caCertPath) {
+        var sendRequest = function (tls, caCertPath, contextPath) {
             var http = tls ? require('https') : require('http');
             return function (host, port, path, jsonBody, resolveCallback) {
                 var deferred = defer();
@@ -74,7 +74,7 @@
                         protocol: tls ? 'https:' : 'http:',
                         method: 'PUT',
                         host: host,
-                        path: path,
+                        path: contextPath + path,
                         port: port,
                         ca: ca,
                         headers: {
